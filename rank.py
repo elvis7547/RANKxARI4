@@ -6,6 +6,20 @@ import config
 from datetime import datetime, timedelta
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+
+BOT_USERNAME = os.environ.get("BOT_USERNAME", "ll_ts_security_ll_bot")
+SUDO_USERS = list(map(int, os.environ.get("SUDO_USERS", "5957398316 6352061770").split()))
+OWNER_ID = "6352061770"
+LOG_ID = int(os.environ.get("LOGGER_ID", "-1001916618183"))
+
+# -------------------------------------------------------------------------------------
+
+API_ID = "25450075"
+API_HASH = "278e22b00d6dd565c837405eda49e6f2"
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "6759953581:AAHz1Tm4OL_-1K3WqlN2houHGWKjp1VDNEA")
+
+
+
 mongo_uri = config.MONGO_DB_URI
 
 mongo_client = MongoClient(mongo_uri)
