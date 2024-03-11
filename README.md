@@ -1,6 +1,6 @@
 # ᴄᴏᴘʏʀɪɢʜᴛ ʜᴀɴᴅʟᴇʀ
 
-<p align="center"><a href="https://t.me/alonegroup121"><img src="https://graph.org/file/37077de233a43b6da9cee.jpg" width="300"></a></p>
+<p align="center"><a href="https://t.me/alonegroup121"><img src="https://telegra.ph/file/3c92178ccecfca0ed1f42.jpg" width="300"></a></p>
 <p align="center">
 
 <p align="center">
