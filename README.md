@@ -1,4 +1,4 @@
-# ᴄᴏᴘʏʀɪɢʜᴛ ʜᴀɴᴅʟᴇʀ
+# ʀᴀɴᴋɪɴɢ x ᴀʀɪ
 
 <p align="center"><a href="https://t.me/alonegroup121"><img src="https://telegra.ph/file/3c92178ccecfca0ed1f42.jpg" width="300"></a></p>
 <p align="center">
