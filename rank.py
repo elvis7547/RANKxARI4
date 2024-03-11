@@ -1,4 +1,6 @@
 from pyrogram.errors import UserNotParticipant, PeerIdInvalid
+import random
+
 from pyrogram import Client, filters
 from pymongo import MongoClient
 from config import MONGO_DB_URI
@@ -18,6 +20,15 @@ API_ID = "25450075"
 API_HASH = "278e22b00d6dd565c837405eda49e6f2"
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "6759953581:AAHz1Tm4OL_-1K3WqlN2houHGWKjp1VDNEA")
 
+
+IMAGE_URLS = [
+    "https://telegra.ph/file/56f46a11100eb698563f1.jpg",
+    "https://telegra.ph/file/66552cbeb49088f98f752.jpg",
+    "https://telegra.ph/file/a9ada352fd34ec8a01013.jpg",
+    "https://telegra.ph/file/47a852d5b1c4c11a497c2.jpg",
+    "https://telegra.ph/file/f002db994f436aaee892c.jpg",
+    "https://telegra.ph/file/35621d8878aefb0dcd899.jpg"
+]
 
 
 mongo_uri = config.MONGO_DB_URI
@@ -139,5 +150,45 @@ async def handle_messages(_, message):
         {"$inc": {"total_messages": 1}, "$set": {"last_updated": datetime.now()}},
         upsert=True
     )
+
+@client.on_message(filters.private & filters.command("start"))
+async def start_private_chat(client, message):
+    # Choose a random image URL
+    image_url = random.choice(IMAGE_URLS)
+
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton("❤️‍🔥ᴀᴅᴅ ᴍᴇ❤️‍🔥", url=f"t.me/{BOT_USERNAME}?startgroup=true"),
+                InlineKeyboardButton("💫ꜱᴜᴘᴘᴏʀᴛ💫", url=f"t.me/{SUPPORT_GROUP_USERNAME}"),
+            ],
+            [
+                InlineKeyboardButton("💖ꜱᴏᴜʀᴄᴇ💖", url=f"t.me/{SOURCE_CODE_CHANNEL_USERNAME}"),
+            ]
+        ]
+    )
+
+    await client.send_photo(
+        chat_id=message.chat.id,
+        photo=image_url,
+        caption="<b>нυι</b> тнιѕ ιѕ 「🛡ᴛꜱ ʀᴀɴᴋɪɴɢ ʙᴏᴛ🛡」❖ 💖\n"
+                "♡━━━━━━━━ ᴀʀɪ ━━━━━━━♡\n"
+                "💫 ᴡᴇʟᴄᴏᴍᴇ ᴛᴏ ᴛꜱ ʀᴀɴᴋɪɴɢ ʙᴏᴛ!.\n "
+                "🌟 ᴅɪꜱᴄᴏᴠᴇʀ ᴡʜᴏ ꜱʜɪɴᴇꜱ ᴛʜᴇ ʙʀɪɢʜᴛᴇꜱᴛ ɪɴ ᴏᴜʀ ᴄᴏᴍᴍᴜɴɪᴛʏ! ꜰʀᴏᴍ ᴀᴄᴛɪᴠᴇ ᴍᴇᴍʙᴇʀꜱ ᴛᴏ ᴛᴏᴘ ᴄᴏɴᴛʀɪʙᴜᴛᴏʀꜱ, ᴡᴇ'ʀᴇ ʜᴇʀᴇ ᴛᴏ ʀᴇᴄᴏɢɴɪᴢᴇ ᴇxᴄᴇʟʟᴇɴᴄᴇ.\n"
+                "📊 Stay updated with real-time rankings, track your progress, and compete with friends to climb the leaderboard!\n"
+                "❖Join us in celebrating achievements and fostering a vibrant community together!❖\n"
+                "♡━━━━━━━━ ᴀʀɪ ━━━━━━━♡\n\n"
+                "ᴍᴀᴅᴇ ᴡɪᴛʜ 🖤 ʙʏ <a href=\"https://t.me/lll_notookk_lll\">||ᴀʀɪ||❣️</a>",
+        reply_markup=keyboard
+    )
+    accha = await message.reply_text(
+        text="__ᴅιиg ᴅιиg ꨄ︎ ѕтαятιиg..__"
+    )
+    await asyncio.sleep(0.2)
+    await accha.edit("__ᴅιиg ᴅιиg ꨄ sтαятιиg.....__")
+    await asyncio.sleep(0.2)
+    await accha.edit("__ᴅιиg ᴅιиg ꨄ︎ sтαятιиg..__")
+    await asyncio.sleep(0.2)
+    await accha.delete()
 
 app.run()
