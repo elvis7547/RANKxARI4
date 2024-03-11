@@ -1,1 +1,1 @@
-worker: python -m copyright.py
+worker: python -m rank.py
