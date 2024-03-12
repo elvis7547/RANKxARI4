@@ -1,26 +1,18 @@
-from pyrogram.errors import UserNotParticipant, PeerIdInvalid
-import random
+import asyncio
 import os
-from pyrogram import Client, filters
 from pymongo import MongoClient
-from config import MONGO_DB_URI
-import config
 from datetime import datetime, timedelta
+from pyrogram import Client, filters
+from pyrogram.errors import UserNotParticipant, PeerIdInvalid
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-
 
 BOT_USERNAME = os.environ.get("BOT_USERNAME", "ll_ts_security_ll_bot")
 SUDO_USERS = list(map(int, os.environ.get("SUDO_USERS", "5957398316 6352061770").split()))
 OWNER_ID = "6352061770"
 LOG_ID = int(os.environ.get("LOGGER_ID", "-1001916618183"))
-
-# -------------------------------------------------------------------------------------
-
 API_ID = "25450075"
 API_HASH = "278e22b00d6dd565c837405eda49e6f2"
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "6759953581:AAHz1Tm4OL_-1K3WqlN2houHGWKjp1VDNEA")
-
-
 IMAGE_URLS = [
     "https://telegra.ph/file/56f46a11100eb698563f1.jpg",
     "https://telegra.ph/file/66552cbeb49088f98f752.jpg",
@@ -29,7 +21,6 @@ IMAGE_URLS = [
     "https://telegra.ph/file/f002db994f436aaee892c.jpg",
     "https://telegra.ph/file/35621d8878aefb0dcd899.jpg"
 ]
-
 
 mongo_uri = config.MONGO_DB_URI
 
@@ -69,6 +60,7 @@ async def top_members(_, message):
     )
 
     await send_response(message, "❀｡:•.─────  ❁ - ❁  ─────.•:｡❀\n ❤️‍🔥<b>ᴡᴇʟᴄᴏᴍᴇ, ᴛʜɪꜱ ʙᴏᴛ ᴡɪʟʟ ᴄᴏᴜɴᴛ ɢʀᴏᴜᴘ ᴍᴇꜱꜱᴀɢᴇꜱ\n ᴄʀᴇᴀᴛᴇ ʀᴀɴᴋɪɴɢꜱ ᴀɴᴅ ɢɪᴠᴇ ᴘʀɪᴢᴇꜱ ᴛᴏ ᴜꜱᴇʀꜱ!\n ᴍᴀᴅᴇ ᴡɪᴛʜ ❤️‍🔥ʙʏ ||ᴀʀɪ||❣️ \n❀｡:•.─────  ❁ - ❁  ─────.•:｡❀", reply_markup)
+
 @app.on_callback_query()
 async def callback_handler(_, query):
     if query.data == "today":
@@ -82,7 +74,6 @@ async def callback_handler(_, query):
 
 async def handle_today_query(query):
     top_members = get_top_members("today")
-
     response = " 𝗧𝗢𝗗𝗔𝗬 𝗟𝗘𝗔𝗗𝗘𝗥𝗕𝗢𝗔𝗥𝗗:\n\n"
     counter = 1
     for member in top_members:
@@ -102,7 +93,6 @@ async def handle_today_query(query):
 
 async def handle_total_query(query):
     top_members = get_top_members("overall")
-
     response = " 𝗚𝗟𝗢𝗕𝗔𝗟 𝗟𝗘𝗔𝗗𝗘𝗥𝗕𝗢𝗔𝗥𝗗 | 🌍\n\n"
     counter = 1
     for member in top_members:
@@ -121,11 +111,9 @@ async def handle_total_query(query):
     await query.message.edit_text(response)
 
 async def handle_channel_query(query):
-    
     await query.message.reply_text("𝗝𝗼𝗶𝗻 𝗼𝘂𝗿 𝗰𝗵𝗮𝗻𝗻𝗲𝗹 𝗳𝗼𝗿 𝗺𝗼𝗿𝗲 𝘂𝗽𝗱𝗮𝘁𝗲𝘀: @ll_about_ari_ll")
 
 async def handle_group_query(query):
-    
     await query.message.reply_text("𝗝𝗼𝗶𝗻 𝗼𝘂𝗿 𝗴𝗿𝗼𝘂𝗽 𝗳𝗼𝗿 𝗱𝗶𝘀𝗰𝘂𝘀𝘀𝗶𝗼𝗻𝘀: @three_stars_ki_duniya")
 
 def get_top_members(timeframe):
@@ -151,7 +139,7 @@ async def handle_messages(_, message):
         upsert=True
     )
 
-@client.on_message(filters.private & filters.command("start"))
+@app.on_message(filters.private & filters.command("start"))
 async def start_private_chat(client, message):
     # Choose a random image URL
     image_url = random.choice(IMAGE_URLS)
@@ -191,4 +179,9 @@ async def start_private_chat(client, message):
     await asyncio.sleep(0.2)
     await accha.delete()
 
-app.run()
+async def main():
+    await app.start()
+    await app.idle()
+
+if __name__ == "__main__":
+    asyncio.run(main())
