@@ -2,7 +2,7 @@ import asyncio
 import os
 import config
 from config import MONGO_DB_URI
-from pymongo import MongoClient
+from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 from datetime import datetime, timedelta
 from pyrogram import Client, filters
 from pyrogram.errors import UserNotParticipant, PeerIdInvalid
