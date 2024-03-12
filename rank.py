@@ -181,9 +181,4 @@ async def start_private_chat(client, message):
     await asyncio.sleep(0.2)
     await accha.delete()
 
-async def main():
-    await app.start()
-    await app.idle()
-
-if __name__ == "__main__":
-    asyncio.run(main())
+app.run()
