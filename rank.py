@@ -39,7 +39,7 @@ top_members_collection = db["top_members"]
 
 user_data = {}
 
-app = Client("my_bot", config_file="config.ini")
+app = Client('my_bot', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
 async def get_chat_member_safe(chat_id, user_id):
     try:
