@@ -24,9 +24,8 @@ IMAGE_URLS = [
     "https://telegra.ph/file/35621d8878aefb0dcd899.jpg"
 ]
 
-mongo_uri = config.MONGO_DB_URI
 
-mongo_client = MongoClient(mongo_uri)
+mongo_client = MongoClient(config.MONGO_DB_URI)
 db = mongo_client["your_database_name"]
 top_members_collection = db["top_members"]
 
