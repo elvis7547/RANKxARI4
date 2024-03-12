@@ -1,5 +1,6 @@
 import asyncio
 import os
+from config import *
 from pymongo import MongoClient
 from datetime import datetime, timedelta
 from pyrogram import Client, filters
